@@ -26,7 +26,7 @@ class RegistrationController extends AbstractController
         $this->emailVerifier = $emailVerifier;
     }
 
-    #[Route('/register', name: 'app_register')]
+    #[Route('/signup', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
     {
         $user = new User();
@@ -43,6 +43,7 @@ class RegistrationController extends AbstractController
             );
 
             $entityManager->persist($user);
+            //dd($user);
             $entityManager->flush();
 
             // generate a signed url and email it to the user
