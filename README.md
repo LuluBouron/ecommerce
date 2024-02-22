@@ -8,18 +8,18 @@
 ### Mise en place de l'interface utilisateur 
 
 
-![Image Alt text](public/assets/images/github/homepage.png)
+![Image Alt text](public/github/homepage.png)
 
 
 ##  Création du service et de la page d'inscription 
 
-![Image Alt text](public/assets/images/github/signup.png)
+![Image Alt text](public/github/signup.png)
 
 
 ##  Création du formulaire de connexion d'un utilisateur et la page de profil 
 
-![Image Alt text](public/assets/images/github/signin.png)
-![Image Alt text](public/assets/images/github/account.png)
+![Image Alt text](public/github/signin.png)
+![Image Alt text](public/github/account.png)
 
 Création d'une base de données (SQLite 3)
 
