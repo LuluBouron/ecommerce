@@ -21,7 +21,9 @@
 ![Image Alt text](public/github/signin.png)
 ![Image Alt text](public/github/account.png)
 
-Création d'une base de données (SQLite 3)
+##  Création du back office avec EasyAdmin 
+
+![Image Alt text](public/github/back_office.png)
 
 Stack utilisée :
 * Symfony 7
