@@ -41,6 +41,8 @@ class DataFixtures extends Fixture
                     ->setImageUrls($product_item->imageUrls)
                     ->setSoldePrice($product_item->solde_price*100)
                     ->setRegularPrice($product_item->regular_price*100)
+                    
+
             ;
             $products[] = $product;
             $manager->persist($product);
@@ -68,9 +70,7 @@ class DataFixtures extends Fixture
             # code...
             
             $category = new Category();
-            $category->setName($name)
-            ;
-           
+            $category->setName($name);
             $manager->persist($category);
         }
         

@@ -59,6 +59,12 @@ class Setting
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $youtubeLink = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $copyright = null;
+
     public function __construct(Type $var = null) {
         $this->setCreatedAt(new \DateTimeImmutable());
     }
@@ -244,6 +250,30 @@ class Setting
     public function setYoutubeLink(?string $youtubeLink): static
     {
         $this->youtubeLink = $youtubeLink;
+
+        return $this;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): static
+    {
+        $this->email = $email;
+
+        return $this;
+    }
+
+    public function getCopyright(): ?string
+    {
+        return $this->copyright;
+    }
+
+    public function setCopyright(?string $copyright): static
+    {
+        $this->copyright = $copyright;
 
         return $this;
     }

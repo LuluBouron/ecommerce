@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jstore | {{page.title}} {% endblock %}
+
+{% block body %}
+{% include "page_head/page_head.html.twig" with {'page_name': page.title } %}
+<div  class="main_content">
+    <div  class="section">
+        <div  class="container">
+            {{ page.content | raw }}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

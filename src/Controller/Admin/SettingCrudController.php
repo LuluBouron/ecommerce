@@ -13,6 +13,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IntegerField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TelephoneField;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\EmailField;
 
 class SettingCrudController extends AbstractCrudController
 {
@@ -35,9 +36,11 @@ class SettingCrudController extends AbstractCrudController
         return [
             IdField::new('id')->hideOnForm(),
             TextField::new('website_name'),
+            EmailField::new('email'),
             TextField::new('description')->hideOnIndex(),
             IntegerField::new('tax'),
             ImageField::new('logo')
+            
             ->setBasePath("assets/images/setting")
             ->setUploadDir("/public/assets/images/setting")
             ->setUploadedFileNamePattern('[randomhash].[extension]')
@@ -56,6 +59,8 @@ class SettingCrudController extends AbstractCrudController
             TextField::new('city'),
             TextField::new('code_postal'),
             TextField::new('state'),
+            TextField::new('copyright')->hideOnIndex(),
+
         ];
     }
     

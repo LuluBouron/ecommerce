@@ -4,6 +4,7 @@ namespace App\Controller\Admin;
 
 use App\Entity\Category;
 use App\Entity\Collections;
+use App\Entity\Page;
 use App\Entity\Product;
 use App\Entity\Setting;
 use App\Entity\Slider;
@@ -55,6 +56,7 @@ class DashboardController extends AbstractDashboardController
         yield MenuItem::linkToCrud('Settings', 'fas fa-gear', Setting::class);
         yield MenuItem::linkToCrud('Sliders', 'fas fa-image', Slider::class);
         yield MenuItem::linkToCrud('Collections', 'fas fa-panorama', Collections::class);
+        yield MenuItem::linkToCrud('Pages', 'fas fa-pages', Page::class);
 
     }
 }

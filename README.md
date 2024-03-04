@@ -25,6 +25,7 @@
 
 ![Image Alt text](public/github/admin_product.png)
 
+##  Modélisation des pages du site
 
 
 Stack utilisée :
