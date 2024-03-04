@@ -65,7 +65,7 @@ class DatabaseActivityListener
                 $filelink = $this->rootDir. "/public/assets/images/products/".$imageUrl;
                //dd($filelink);
                 $this->deleteImage($filelink);
-            // dd($filelink);
+                // dd($filelink);
             }
 
         }

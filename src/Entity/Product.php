@@ -2,12 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\ProductRepository;
 use DateTimeImmutable;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use Cocur\Slugify\Slugify;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 
 #[ORM\Entity(repositoryClass: ProductRepository::class)]
 class Product
@@ -91,7 +92,7 @@ class Product
     public function setName(string $name): static
     {
         $this->name = $name;
-
+        $this->setSlug((new Slugify())->slugify($name));
         return $this;
     }
 

@@ -5,25 +5,24 @@
                 <div  class="col-lg-3 col-md-6 col-sm-12">
                     <div  class="widget">
                         <div  class="footer_logo"><a  href="#">
-                                <h2 >Jstore</h2>
+                                <h2 >{{  app.session.get("setting").websiteName }} </h2>
                             </a></div>
-                        <p > Retrouvez tous les accessoires et habits pour femmes, jeunes
-                            filles etc... </p>
+                        <p > {{  app.session.get("setting").description }} </p>
                     </div>
                     <div  class="widget">
                         <ul  class="social_icons social_white">
                             <li ><a  target="_blank"
-                                    href="https://facebook.com"><i 
+                                    href={{  app.session.get("setting").facebookLink }}><i 
                                         class="ion-social-facebook"></i></a>
                             </li>
                             <li ></li>
                             <li ></li>
                             <li ><a  target="_blank"
-                                    href="https://www.youtube.com/channel/UCkqALrIVPEyGnnbmiFl3lQA/?sub_confirmation=1"><i
+                                    href={{  app.session.get("setting").youtubeLink }}><i
                                          class="ion-social-youtube-outline"></i></a>
                             </li>
                             <li ><a  target="_blank"
-                                    href="https://www.instagram.com/mudey_formation/"><i 
+                                    href={{  app.session.get("setting").instagramLink }}<i 
                                         class="ion-social-instagram-outline"></i></a>
                             </li>
                         </ul>
@@ -86,13 +85,13 @@
                         <ul  class="contact_info contact_info_light">
                             <li ><i 
                                     class="ti-location-pin"></i>
-                                <p >21 Rue Rubens 59800 Lille</p>
+                                <p >{{  app.session.get("setting").street }}</p>
                             </li>
                             <li ><i  class="ti-email"></i><a
                                      href="mailto:contact@jstore.fr">contact@jstore.fr</a>
                             </li>
                             <li ><i  class="ti-mobile"></i>
-                                <p >+33 7 49 31 69 74</p>
+                                <p >{{  app.session.get("setting").phone }} </p>
                             </li>
                         </ul>
                     </div>
