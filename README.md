@@ -23,9 +23,8 @@
 
 ##  Création du back office avec EasyAdmin 
 
-![Image Alt text](public/github/back_office.png)
-![Image Alt text](public/github/back_office.png)
-![Image Alt text](public/github/back_office.png)
+![Image Alt text](public/github/admin_product.png)
+
 
 
 Stack utilisée :
