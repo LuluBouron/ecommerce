@@ -25,8 +25,8 @@ class Category
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
 
-    #[ORM\Column(type: Types::ARRAY, nullable: true)]
-    private ?array $imageUrls = null;
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageUrls = null;
 
     #[ORM\Column(nullable: true)]
     private ?bool $isMega = null;
@@ -88,12 +88,12 @@ class Category
         return $this;
     }
 
-    public function getImageUrls(): ?array
+    public function getImageUrls(): ?string
     {
         return $this->imageUrls;
     }
 
-    public function setImageUrls(?array $imageUrls): static
+    public function setImageUrls(?string $imageUrls): static
     {
         $this->imageUrls = $imageUrls;
 
@@ -161,5 +161,10 @@ class Category
         }
 
         return $this;
+    }
+
+
+    public function  __toString(){
+        return $this->name;
     }
 }

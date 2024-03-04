@@ -24,6 +24,9 @@
 ##  Création du back office avec EasyAdmin 
 
 ![Image Alt text](public/github/back_office.png)
+![Image Alt text](public/github/back_office.png)
+![Image Alt text](public/github/back_office.png)
+
 
 Stack utilisée :
 * Symfony 7
