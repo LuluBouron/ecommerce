@@ -6,6 +6,7 @@ use Doctrine\DBAL\Types\Type;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\PageRepository;
+use Cocur\Slugify\Slugify;
 
 #[ORM\Entity(repositoryClass: PageRepository::class)]
 class Page
@@ -53,7 +54,7 @@ class Page
     public function setTitle(string $title): static
     {
         $this->title = $title;
-
+        $this->setSlug((new Slugify())->slugify($title));
         return $this;
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\CategoryRepository;
 use App\Repository\CollectionsRepository;
 use App\Repository\PageRepository;
 use App\Repository\ProductRepository;
@@ -26,6 +27,7 @@ class HomeController extends AbstractController
         SettingRepository $settingRepo,  
         SliderRepository $sliderRepo,
         CollectionsRepository $collectionRepo,
+        CategoryRepository $categoryRepo,
         PageRepository $pageRepo,
         Request $request
         ): Response
@@ -33,7 +35,9 @@ class HomeController extends AbstractController
         $session = $request->getSession();
         $data = $settingRepo->findAll();
         $sliders = $sliderRepo->findAll();
-        $collections = $collectionRepo->findAll();
+        $collections = $collectionRepo->findBy(['isMega' => false]);;
+        $megaCollections = $collectionRepo->findBy(['isMega' => true]);
+        $categories = $categoryRepo->findAll();
 
         
         $session->set("setting", $data[0]);
@@ -43,6 +47,9 @@ class HomeController extends AbstractController
         // dd($headerPages);
         $session->set("headerPages", $headerPages);
         $session->set("footerPages", $footerPages);
+        $session->set("categories", $categories);
+        $session->set("megaCollection", $megaCollections);
+
 
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
@@ -53,6 +60,38 @@ class HomeController extends AbstractController
             'productsFeatured' => $this->repoProduct->findBy(['isFeatured'=>true]),
             'productsSpecialOffer' => $this->repoProduct->findBy(['isSpecialOffer'=>true])
 
+        ]);
+    }
+
+    #[Route('/product/{slug}', name: 'app_product_by_slug')]
+    public function showProduct(string $slug) 
+    {
+        $product = $this->repoProduct->findOneBy(['slug' => $slug]);
+
+        if(!$product){
+            //error
+            return $this->redirectToRoute('app_error');
+        }
+
+        // get the category of the product
+        // $productCategory = $this->repoProduct->findOneBy('categories');
+        // dd($productCategory);
+
+        
+        return $this->render('product/show_product_by_slug.html.twig', 
+        [
+            'product' => $product
+        ]
+        );
+    }
+
+    #[Route('/error', name: 'app_error')]
+    public function errorPage() 
+    {
+         // Redirect to error page
+         return $this->render('page/not-found.html.twig', [
+          
+           
         ]);
     }
 }

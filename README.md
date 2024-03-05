@@ -27,6 +27,14 @@
 
 ##  Modélisation des pages du site
 
+Affichage d'un produit
+
+
+## Création du panier
+
+![Image Alt text](public/github/show_product.png)
+
+
 
 Stack utilisée :
 * Symfony 7

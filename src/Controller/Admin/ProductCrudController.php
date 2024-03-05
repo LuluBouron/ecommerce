@@ -43,6 +43,7 @@ class ProductCrudController extends AbstractCrudController
             TextField::new('description'),
             TextEditorField::new('more_description'),
             TextEditorField::new('additional_infos'),
+            AssociationField::new('relatedProducts')->hideOnIndex(),
             ImageField::new('imageUrls')
             ->setFormTypeOptions([
                 "multiple"=> true,
