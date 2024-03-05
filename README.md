@@ -28,6 +28,7 @@
 ##  Modélisation des pages du site
 
 Affichage d'un produit
+![Image Alt text](public/github/show_product.png)
 
 
 ## Création du panier
