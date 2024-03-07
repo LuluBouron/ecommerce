@@ -46,7 +46,7 @@
                         <div class="product_description">
                             <h4 class="product_title"><a href="#">{{product.name}}</a></h4>
                             <div class="product_price"><span class="price">{{product.soldePrice}}&nbsp;€</span><del>{{product.regularPrice}}&nbsp;€</del>
-                                <div class="on_sale"><span>35% Off</span></div>
+                                <div class="on_sale"><span>{{((product.regularPrice - product.soldePrice)*100/ product.regularPrice) |number_format(2, '.', ',') }}% Off Off</span></div>
                             </div>
                             <div class="rating_wrap">
                                 <div class="rating">
@@ -65,18 +65,7 @@
                                     <li><i class="linearicons-bag-dollar"></i>Cash on Delivery available</li>
                                 </ul>
                             </div>
-                            {# <div class="pr_switch_wrap"><span class="switch_lable">Color</span>
-                                <div class="product_color_switch"><span data-color="#87554B" class="active"
-                                        style="background-color: rgb(135, 85, 75);"></span><span data-color="#333333"
-                                        style="background-color: rgb(51, 51, 51);"></span><span data-color="#DA323F"
-                                        style="background-color: rgb(218, 50, 63);"></span></div>
-                            </div> #}
-                            {# <div class="pr_switch_wrap"><span class="switch_lable">Size</span>
-                                <div class="product_size_switch">
-                                    <span>xs</span><span>s</span><span>m</span><span>l</span><span>xl</span>
-                                </div>
-                            </div>
-                        </div> #}
+                     
                         <hr>
                         <div class="cart_extra">
                             <div class="cart-product-quantity">

@@ -33,7 +33,9 @@ Affichage d'un produit
 
 ## Création du panier
 
-![Image Alt text](public/github/show_product.png)
+![Image Alt text](public/github/cart.png)
+
+Interface en JavaScript du panier 
 
 
 

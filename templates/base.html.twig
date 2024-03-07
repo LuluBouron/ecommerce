@@ -28,7 +28,6 @@
 		{% endblock %}
 
 		{% block javascripts %}
-
 			<script src="/assets/js/jquery-3.6.0.min.js"></script>
 			<script src="/assets/js/popper.min.js"></script>
 			<script src="/assets/bootstrap/js/bootstrap.min.js"></script>
@@ -43,9 +42,10 @@
 			<script src="/assets/js/slick.min.js"></script>
 			<script src="/assets/js/jquery.elevatezoom.js"></script>
 			<script src="/assets/js/scripts.js"></script>
-			{% block importmap %}
-				{{ importmap('app') }}
-			{% endblock %}
+			<script src="/assets/js/cart.js"></script>
+			 
+		 {% block importmap %}{{ importmap('app') }}{% endblock %}
+
 		{% endblock %}
 	</head>
 	<body>
@@ -53,8 +53,15 @@
 
 		{% block body %}
 		
+        <div class="notification">
+            
+		
 		{% endblock %}
 		{% include 'footer/index.html.twig' %}
 
+		
+
+
+			
 	</body>
 </html>
