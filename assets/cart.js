@@ -2,23 +2,27 @@ window.onload = () => {
     let mainContent = document.querySelector('.main_content')
     let tbody = document.querySelector('tbody')
     let cart_total_amount =  document.querySelectorAll('.cart_total_amount')
-    
     let cart = JSON.parse(mainContent?.dataset?.cart || false);
+   
 
-    console.log('coucou')
     const formatPrice = (price) => {
         return Intl.NumberFormat('en-US', { style: 'currency', currency: 'EUR' })
             .format(price);
     }
 
-    const addFlashMessage = (message) => {
+    const addFlashMessage = (message, status="sucess") => {
         // message de notification quand on ajoute un produit au panier
         const text = `
-        <div class="alert alert-success" role="alert">
+        <div class="alert alert-${status}" role="alert">
          ${message}! </div>
 
         `
+        const audio = document.createElement("audio")
+        audio.src = "/assets/audios/success.wav"
+
+        audio.play()
         document.querySelector(".notification").innerHTML += text
+        // message disparait au bout de 2 secs
         setTimeout(() => {
             document.querySelector(".notification").innerHTML = ""
         }, 2000)
@@ -27,30 +31,41 @@ window.onload = () => {
     
     const fetchData = async (requestUrl) =>{
         const response = await fetch(requestUrl)
-        if(response.ok){
-            // si la requête contient le mot clé 'add' alors on met ce message
-            if(requestUrl.search('/add/') != -1){
-                // add to cart
-                addFlashMessage('Le produit a bien été ajouté à votre panier')
-            }
-
-            if(requestUrl.search('/remove/') != -1){
-                // remove to cart
-                addFlashMessage('Le produit a bien été supprimé de votre panier')
-            }
-        }
         return await response.json()
         
     }
-
     //récupérer les éléments du tbody pour ajout et remove les produits sans rechargement de la page
     const manageLink = async (event) => {
+        
         event.preventDefault();
         const link = event.target.href ? event.target : event.target.parentNode 
         const requestUrl = link.href // => pour avoir directement l'URL qui permet l'ajout
+        // si la requête contient le mot clé 'add' alors on met ce message
         cart = await fetchData(requestUrl)
+        // console.log(requestUrl.split('/')[5])
+        const productId = requestUrl.split('/')[5]
+       //console.log(productId)
+        const product = await fetchData("/product/get/" +productId)
+        //console.log(product)
+
+        if(requestUrl.search('/add/') != -1){
+           // add to cart
+           if(product){
+            addFlashMessage(`Le produit ${product.name} a bien été ajouté à votre panier`)
+           }else {
+            addFlashMessage('Le produit a bien été ajouté dans votre panier')
+           }
+           
+           
+        }
+
+        if(requestUrl.search('/remove/') != -1){
+            // remove to cart
+            addFlashMessage('Le produit a bien été supprimé de votre panier', "danger")
+        }
+
         initCart()
-        //console.log(result)
+        
     }
 
     const addEventListenerToLink = () => {
@@ -59,8 +74,8 @@ window.onload = () => {
             link.addEventListener("click", manageLink)
         })
 
-        const add_to_cart_links = document.querySelectorAll('li.add-to-cart a')
-        console.log(add_to_cart_links)
+        const add_to_cart_links = document.querySelectorAll('li.add-to-cart a, a .item-remove, a.btn-addtocart')
+ 
         add_to_cart_links.forEach((link)=>{
             link.addEventListener("click", manageLink)
         })
@@ -75,11 +90,9 @@ window.onload = () => {
         }
 
         if(tbody){
-            console.log('in')
             tbody.innerHTML = ""
             cart.items.forEach((item) => {   
                 const { product, quantity, sub_total } = item
-                //console.log(item)
                 const content = ` <tr>
                 <td class="product-thumbnail"><a><img width="50" alt="product1"
                                                         src="/assets/images/products/${product.imageUrls[0]}"></a>
@@ -117,8 +130,52 @@ window.onload = () => {
         
         addEventListenerToLink()
     }
+    // gérer le panier en en-tête
+    const updateHeaderCart = async () =>{
+
+        const cart_count = document.querySelector(".cart_count")
+        const cart_list = document.querySelector(".cart_list")
+        const cart_price_value = document.querySelector(".cart_price_value")
+        
+        if(!cart){ 
+           // cart data not found
+           console.log('panier pas trouvé')
+           cart = await fetchData("/cart/get")
+           
+        }
+        
+        else {
+            console.log('panier ok')
+            // cart data found
+            cart_count.innerHTML = cart.cart_count
+            cart_list.innerHTML = ""
+            cart_price_value.innerHTML = formatPrice(cart.sub_total/100) 
+
+            cart.items.forEach(item =>{
+                
+                const {product, quantity, sub_total} = item
+                console.log(product)
+                cart_list.innerHTML += ` 
+                    <li>
+                        <a  href="/cart/remove/${product.id}/${quantity}" class="item_remove">
+                        <i  class="ion-close"></i></a>
+                        
+                        <a href="/product/${product.slug}">
+                        <img width="50" height="50" alt="cart_thumb1" src="/assets/images/products/${product.imageUrls[0]}">
+                       ${product.name} </a>
+                        <span  class="cart_quantity"> ${quantity}  
+                        <span  class="cart_amount">  ${sub_total}  
+                        <span class="price_symbole">${formatPrice(product.soldePrice/100)}</span>
+                        </span></span>
+                    </li>`
+            })
+        }
+        addEventListenerToLink()
+
+
+    }
     //appel de la fonction
     initCart()
+    updateHeaderCart()
     
-
 }

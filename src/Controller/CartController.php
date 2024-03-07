@@ -52,6 +52,15 @@ class CartController extends AbstractController
         
         
     }
+
+    #[Route('/cart/get', name: 'app_get_cart')]
+    public function getCart(): Response
+    {
+        $cart = $this->cartService->getCartDetails();
+
+        return $this->json($cart);
+        
+    }
 }
 
 

@@ -78,10 +78,13 @@ class CartService {
         $cart = $this->getCart();
         $result = [
             'items' => [],
-            'sub_total' => 0
+            'sub_total' => 0,
+            'cart_count' => 0
         ];
 
         $sub_total = 0;
+
+
         foreach ($cart as $productId => $quantity) {
             $product = $this->productRepo->find($productId);
             if($product){
@@ -100,12 +103,15 @@ class CartService {
                     'sub_total' => $current_sub_total,
                 ];
                 $result['sub_total'] = $sub_total;
+                $result['cart_count'] += $quantity;
+
 
             }else{
                 unset($cart[$productId]);
                 $this->updateCart($cart);
             }
         }
+
 
         return $result;
     }

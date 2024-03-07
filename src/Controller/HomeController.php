@@ -23,11 +23,7 @@ class HomeController extends AbstractController
     }
     
     #[Route('/', name: 'app_home')]
-    public function index(
-        SettingRepository $settingRepo,  
-        SliderRepository $sliderRepo,
-        CollectionsRepository $collectionRepo,
-        CategoryRepository $categoryRepo,
+    public function index(SettingRepository $settingRepo, SliderRepository $sliderRepo, CollectionsRepository $collectionRepo, CategoryRepository $categoryRepo,
         PageRepository $pageRepo,
         Request $request
         ): Response
@@ -63,6 +59,26 @@ class HomeController extends AbstractController
         ]);
     }
 
+    #[Route('/product/get/{id}', name: 'app_product_by_id')]
+    public function getProductById(string $id)
+    {
+        $product = $this->repoProduct->findOneBy(['id'=>$id]);
+
+        if(!$product){
+            // error
+            return $this->json(false);
+        }
+
+        return $this->json([
+            'id'=>$product->getId(),
+            'name'=>$product->getName(),
+            'imageUrls'=>$product->getImageUrls(),
+            'soldePrice'=>$product->getSoldePrice(),
+            'regularPrice'=>$product->getRegularPrice(),
+            'slug' => $product->getSlug()
+        ]);
+    }
+
     #[Route('/product/{slug}', name: 'app_product_by_slug')]
     public function showProduct(string $slug) 
     {
@@ -76,11 +92,14 @@ class HomeController extends AbstractController
         // get the category of the product
         // $productCategory = $this->repoProduct->findOneBy('categories');
         // dd($productCategory);
-
         
+        $slug = $product->getSlug();
+
         return $this->render('product/show_product_by_slug.html.twig', 
         [
-            'product' => $product
+            'product' => $product,
+            'slug' => $slug
+            
         ]
         );
     }

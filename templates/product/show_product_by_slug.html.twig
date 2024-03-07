@@ -73,10 +73,15 @@
                                         name="quantity" value="1" title="Qty" size="4" class="qty"><input type="button"
                                         value="+" class="plus"></div>
                             </div>
-                            <div class="cart_btn"><button type="button" class="btn btn-fill-out btn-addtocart"><i
-                                        class="icon-basket-loaded"></i> Add to cart
-                                </button><button type="button" class="btn btn-fill-out btn-addtocart"><i
-                                        class="icon-basket-loaded"></i> Pay Now </button></div>
+                            
+                            <div class="cart_btn">
+                            <a href="/cart/add/{{product.id}}/1" type="button" class="btn btn-fill-out btn-addtocart">
+                                    <i class="icon-basket-loaded"></i>
+                                    Add to cart
+                                </a>
+                                </button><button type="button" class="btn btn-fill-out btn-addtocart">
+                                <i class="icon-basket-loaded"></i> Pay Now </button></div>
+                           
                             <div class="cart_btn"><a href="#" class="add_compare"><i class="icon-shuffle"></i></a><a
                                     href="#" class="add_wishlist"><i class="icon-heart"></i></a>
                             </div>
