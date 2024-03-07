@@ -41,6 +41,8 @@ Interface en JavaScript du panier
 
 Stack utilisée :
 * Symfony 7
+* Javascript
+* Bootstrap
 * SQLite 3
 
 
