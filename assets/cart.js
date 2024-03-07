@@ -163,8 +163,8 @@ window.onload = () => {
                         <a href="/product/${product.slug}">
                         <img width="50" height="50" alt="cart_thumb1" src="/assets/images/products/${product.imageUrls[0]}">
                        ${product.name} </a>
-                        <span  class="cart_quantity"> ${quantity}  
-                        <span  class="cart_amount">  ${sub_total}  
+                        <span  class="cart_quantity"> ${quantity}  x
+                        <span  class="cart_amount">  
                         <span class="price_symbole">${formatPrice(product.soldePrice/100)}</span>
                         </span></span>
                     </li>`
